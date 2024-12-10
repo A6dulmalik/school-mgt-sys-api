@@ -1,13 +1,34 @@
 /* eslint-disable prettier/prettier */
-import { Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { GetUserParamdto } from 'src/dto/userParam.dto';
 import { UserService } from './services/user.services';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateUserDto } from 'src/dto/createUser.dto';
 
 @Controller('users')
+@ApiTags('users')
 export class UsersController {
     constructor(private readonly userService: UserService) { }
 
+    @ApiResponse({
+        status: 200,
+        description: 'Users fetched successfully.'
+    })
+    @ApiOperation({
+        summary: 'Fetching all users.'
+    })
+    
     @Get('/:id?')
+    @ApiQuery({
+        name: 'limit',
+        type: 'number',
+        required: false
+    })
+    @ApiQuery({
+        name: 'page',
+        type: 'number',
+        required: false
+    })
     public getUser(
         @Param() getuserparamdto: GetUserParamdto,
         @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
@@ -20,8 +41,11 @@ export class UsersController {
     }
 
     @Post()
-    public addUser() {
-        return 'User added/created'
+    public addUser(
+        @Body() createuserdto: CreateUserDto
+    ) {
+        console.log(createuserdto);
+        return 'User added/created';
     }
 
 }
