@@ -15,7 +15,15 @@ async function bootstrap() {
   );
 
   //Swagger Configuration
-  const config = new DocumentBuilder().setVersion('1.0').build();
+  const config = new DocumentBuilder()
+  .setVersion('1.0')
+  .setTitle('School Management System')
+  .setDescription('A school management system api')
+  .setTermsOfService('http://localhost:3001/terms-of-service')
+  .setLicense('MIT', 'https://github.com/git/git-scm.com/blob/gh-pages/MIT-LICENSE.txt')
+  .addServer('http://localhost:3001')
+  .build();
+  
   //Instantiate Document
   const document = SwaggerModule.createDocument(app, config)
 

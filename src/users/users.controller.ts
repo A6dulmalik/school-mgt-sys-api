@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
-import { GetUserParamdto } from 'src/dto/userParam.dto';
-import { UserService } from './services/user.services';
+import { Body, Controller, DefaultValuePipe, Delete, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { GetUserParamdto } from 'src/users/dto/userParam.dto';
+import { UserService } from './providers/user.services';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from 'src/dto/createUser.dto';
+import { CreateUserDto } from 'src/users/dto/createUser.dto';
 
 @Controller('users')
 @ApiTags('users')
@@ -46,6 +46,11 @@ export class UsersController {
     ) {
         console.log(createuserdto);
         return 'User added/created';
+    }
+
+    @Delete()
+    public removeUser() {
+        return 'User deleted successfully.'
     }
 
 }
