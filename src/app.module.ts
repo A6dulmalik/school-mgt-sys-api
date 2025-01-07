@@ -6,7 +6,10 @@ import { UsersModule } from './users/users.module';
 import { ClassroomModule } from './classroom/classroom.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { User } from './users/user.entity';
+// import { User } from './users/user.entity';
+import { ClassroomModule } from './classroom/classroom.module';
+import { TeacherModule } from './teacher/teacher.module';
+import { StudentModule } from './student/student.module';
 
 @Module({
   imports: [
@@ -15,13 +18,16 @@ import { User } from './users/user.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 4532,
-      username: 'pg',
+      port: 5432,
+      username: 'postgres',
       password: '1234',
-      database: 'postgres',
-      entities: [User],
+      database: 'school-mgt-sys',
+      // entities: [User],
+      autoLoadEntities: true,
       synchronize: true,
-    })
+    }),
+    TeacherModule,
+    StudentModule
   ],
   controllers: [AppController],
   providers: [AppService],

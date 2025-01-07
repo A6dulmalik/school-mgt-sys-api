@@ -1,0 +1,40 @@
+GET http://localhost:3001/users
+
+
+POST http://localhost:3001/users
+Content-Type: application/json
+ {
+    "firstName": "Yakub",
+    "lastName": "Abdulmalik",
+    "email": "yakubabdulmalik@gmail.com",
+    "role": "teacher",
+    "age": 40,
+    "gender": "male",
+    "password": "password"
+}
+#  [
+#     {
+#     "firstName": "Abdulmalik",
+#     "lastName": "Abdulmalik",
+#     "email": "abdlkabdulmalik@gmail.com",
+#     "role": "student",
+#     "age": 24,
+#     "gender": "male",
+#     "password": "p@ssword"
+# },
+# {
+#     "firstName": "Ummu-kulthum",
+#     "lastName": "Abdulmalik",
+#     "email": "abdulmalikummukulthum908@gmail.com",
+#     "role": "teacher",
+#     "age": 21,
+#     "gender": "female",
+#     "password": "p@ssword" 
+# }
+# ]
+
+PATCH http://localhost:3001/users/2
+Content-Type: application/json
+ {
+    "dateOfBirth" : "2003-10-06"
+}
